@@ -22,12 +22,12 @@ public class TarefaController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletarAvaliacao(@RequestParam String id, @RequestHeader(name = "Authorization") String jwtToken) {
+    public void deletarAvaliacao(@PathVariable String id, @RequestHeader(name = "Authorization") String jwtToken) {
         tarefaService.deletaTarefa(id,jwtToken);
     }
 
     @GetMapping("{id}")
-    public Tarefa pegaAvaliacao(@RequestParam String id, @RequestHeader(name = "Authorization") String jwtToken) {
+    public Tarefa pegaAvaliacao (@PathVariable String id, @RequestHeader(name = "Authorization") String jwtToken) {
         return tarefaService.getTarefa(id,jwtToken);
     }
 
