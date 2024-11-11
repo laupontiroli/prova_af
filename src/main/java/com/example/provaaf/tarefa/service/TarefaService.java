@@ -46,7 +46,9 @@ public class TarefaService {
             Tarefa tarefa = op.get();
             tarefaRepository.delete(tarefa);
         }
-        throw new RuntimeException("tarefa não encontrada");
+        else {
+            throw new RuntimeException("tarefa não encontrada");
+        }
     }
 
     public List<Tarefa> listaTarefa(String jwtToken){
