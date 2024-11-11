@@ -6,8 +6,10 @@ import com.example.provaaf.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class TarefaService {
@@ -18,6 +20,7 @@ public class TarefaService {
     @Autowired
     TarefaRepository tarefaRepository;
     public Tarefa criaTarefa(Tarefa tarefa, String jwtToken){
+
         String papel = usuarioService.pegaPapel(jwtToken);
         if (papel.equals("none")){
             throw new RuntimeException("token inválido");
@@ -25,6 +28,7 @@ public class TarefaService {
         else if (papel.equals("DEVELOPER")){
             throw new RuntimeException("Criação é feita por ADMIN");
         }
+        tarefa.setId(UUID.randomUUID().toString());
         return tarefaRepository.save(tarefa);
     }
 
